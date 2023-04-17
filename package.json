@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "build/src/server.js",
   "license": "MIT",
+  "prisma": {
+    "schema": "./src/database/prisma/schema.prisma"
+  },
   "dependencies": {
     "@prisma/client": "^4.12.0",
     "express": "^4.18.2",

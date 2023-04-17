@@ -1,18 +1,11 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
+import { route } from "./routes/routes_user";
 
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
-
-app.get("/", async (req: Request, res: Response) => {
-  const users = await prisma.user.findMany();
-  res.json(users);
-});
+app.use(express.json());
+app.use(route);
 
 export default app;
