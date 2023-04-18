@@ -4,7 +4,8 @@
   "main": "build/src/server.js",
   "license": "MIT",
   "prisma": {
-    "schema": "./src/database/prisma/schema.prisma"
+    "schema": "./src/database/prisma/schema.prisma",
+    "migrate": "./src/database/migrations/"
   },
   "dependencies": {
     "@prisma/client": "^4.12.0",
