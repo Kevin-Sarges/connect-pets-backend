@@ -1,11 +1,15 @@
 import express from "express";
 import cors from "cors";
 import { route } from "./routes/routes_user";
+import { createConnection } from "./database/client";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(route);
+
+createConnection().then(() => {
+  app.use(route);
+});
 
 export default app;

@@ -22,8 +22,8 @@ model Usuarios {
   created_at   DateTime    @default(now())
   updated_at   DateTime    @updatedAt
   id_cidade    String
-  cidade       Cidades     @relation(fields: [id_cidade], references: [id])
   postages     Postagens[]
+  cidade       Cidades     @relation(fields: [id_cidade], references: [id])
 
   @@map("usuarios")
 }
