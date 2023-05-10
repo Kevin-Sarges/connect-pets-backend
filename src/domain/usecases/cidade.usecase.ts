@@ -20,7 +20,7 @@ export class CidadeUseCase {
   }
 
   async buscarCidadePorId(id: string): Promise<Cidade | null> {
-    const cidade = await this.buscarCidadePorId(id);
+    const cidade = await this.cidadeRepository.buscarPorId(id);
 
     return cidade;
   }
