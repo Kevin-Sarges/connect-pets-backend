@@ -8,30 +8,8 @@ datasource db {
 }
 
 model Cidades {
-  id          String     @id @default(uuid())
+  id          String @id @default(uuid())
   nome_cidade String
-  usuarios    Usuarios[]
 
   @@map("cidades")
-}
-
-model Usuarios {
-  id           String      @id @default(uuid())
-  nome_usuario String
-  email        String      @unique
-  created_at   DateTime    @default(now())
-  updated_at   DateTime    @updatedAt
-  id_cidade    String
-  postages     Postagens[]
-  cidade       Cidades     @relation(fields: [id_cidade], references: [id])
-
-  @@map("usuarios")
-}
-
-model Postagens {
-  id          String   @id @default(uuid())
-  nome_pets   String
-  nome_doador String
-  id_usuario  String
-  usuario     Usuarios @relation(fields: [id_usuario], references: [id])
 }

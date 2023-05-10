@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { route } from "./routes/routes_user";
+import { route } from "./routes/index.routes";
 import { createConnection } from "./database/client";
 
 const app = express();
