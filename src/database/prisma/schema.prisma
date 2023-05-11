@@ -8,8 +8,20 @@ datasource db {
 }
 
 model Cidades {
-  id          String @id @default(uuid())
+  id          String     @id @default(uuid())
   nome_cidade String
+  Usuarios    Usuarios[]
 
   @@map("cidades")
+}
+
+model Usuarios {
+  id          String  @id @default(uuid())
+  nome_doador String
+  email       String
+  password    String
+  cidade      Cidades @relation(fields: [cidadeId], references: [id])
+  cidadeId    String
+
+  @@map("usuarios")
 }
