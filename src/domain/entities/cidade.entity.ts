@@ -1,8 +1,11 @@
-export class CidadeEntity {
-  id: string;
-  nome_cidade: string;
+import { v4 as uuidv4 } from "uuid";
 
-  constructor(id: string, nome_cidade: string) {
-    (this.id = id), (this.nome_cidade = nome_cidade);
+export class CidadeEntity {
+  public readonly id: string;
+  public nome_cidade: string;
+
+  constructor(nome_cidade: string, id?: string) {
+    this.id = id || uuidv4();
+    this.nome_cidade = nome_cidade;
   }
 }
