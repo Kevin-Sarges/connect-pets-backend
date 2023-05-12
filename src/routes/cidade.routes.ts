@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CidadeRepository } from "../domain/repositoies/cidade.repository";
+import { CidadeRepository } from "../domain/repositories/cidade.repository";
 import { CidadeUseCase } from "../domain/usecases/cidade.usecase";
 import { CidadeController } from "../controllers/cidade.controller";
 

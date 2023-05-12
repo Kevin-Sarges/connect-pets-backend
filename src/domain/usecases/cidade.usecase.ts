@@ -1,13 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
 import { CidadeEntity as Cidade } from "../entities/cidade.entity";
-import { CidadeRepository } from "../repositoies/cidade.repository";
+import { CidadeRepository } from "../repositories/cidade.repository";
 
 export class CidadeUseCase {
   constructor(private cidadeRepository: CidadeRepository) {}
 
   async criarCidade(nomeCidade: string): Promise<Cidade> {
     const id = uuidv4();
-    const novaCidade = new Cidade(id, nomeCidade);
+    const novaCidade = new Cidade(nomeCidade, id);
 
     const cidadeCriada = await this.cidadeRepository.criar(novaCidade);
     return cidadeCriada;

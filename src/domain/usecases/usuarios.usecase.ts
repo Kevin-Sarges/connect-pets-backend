@@ -1,5 +1,5 @@
-import { UsuarioEntity as Usuario } from "../entities/usuario.entity";
-import { UsuarioRepository } from "../repositoies/usuario.repository";
+import { UsuarioEntity } from "../entities/usuario.entity";
+import { UsuarioRepository } from "../repositories/usuario.repository";
 
 export class UsuariosUseCase {
   private usuarioRepository: UsuarioRepository;
@@ -8,22 +8,22 @@ export class UsuariosUseCase {
     this.usuarioRepository = usuarioRepository;
   }
 
-  async criarUsuario(usuario: Usuario): Promise<Usuario> {
+  async criarUsuario(usuario: UsuarioEntity): Promise<UsuarioEntity> {
     return this.usuarioRepository.criarUsuario(usuario);
   }
 
-  async buscarUsuarioPorId(id: string): Promise<Usuario | null> {
+  async buscarUsuarioPorId(id: string): Promise<UsuarioEntity | null> {
     return this.usuarioRepository.buscarUsuarioPorId(id);
   }
 
-  async buscarUsuarios(): Promise<Usuario[]> {
+  async buscarUsuarios(): Promise<UsuarioEntity[]> {
     return this.usuarioRepository.buscarUsuarios();
   }
 
   async atualizarUsuario(
     id: string,
-    usuario: Usuario
-  ): Promise<Usuario | null> {
+    usuario: UsuarioEntity
+  ): Promise<UsuarioEntity | null> {
     return this.usuarioRepository.atualizarUsuario(id, usuario);
   }
 
