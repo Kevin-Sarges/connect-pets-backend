@@ -12,6 +12,10 @@ export class PostagemUseCase {
     return this.postagemRepository.criandoPostagem(postagem);
   }
 
+  async buscarPostagens(): Promise<PostagemEntity[]> {
+    return this.postagemRepository.buscarPostagens();
+  }
+
   async buscarPostagemPoId(id: string): Promise<PostagemEntity | null> {
     return this.postagemRepository.buscarPostagemPorId(id);
   }
