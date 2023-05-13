@@ -32,7 +32,7 @@ export class PostagemController {
     }
   }
 
-  async buscarPostagem(req: Request, res: Response): Promise<void> {
+  async buscarPostagens(req: Request, res: Response): Promise<void> {
     try {
       const postagem = await this.postgemUseCase.buscarPostagens();
 
