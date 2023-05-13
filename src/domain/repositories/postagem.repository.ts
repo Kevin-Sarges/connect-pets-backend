@@ -4,6 +4,7 @@ import {
   Postagens as PrismaPostagem,
 } from "@prisma/client";
 import { PostagemEntity } from "../entities/postagem.entity";
+import { parseIsolatedEntityName } from "typescript";
 
 export class PostagemRepository {
   private prisma: PrismaClient;
@@ -30,6 +31,7 @@ export class PostagemRepository {
 
     const prismaPostagem = await this.prisma.postagens.create({
       data: {
+        id_postagem: id,
         nome_pet,
         idade_pet,
         sexo_pet,
@@ -38,6 +40,12 @@ export class PostagemRepository {
     });
 
     return this.mapToPostagem(prismaPostagem);
+  }
+
+  async buscarPostagens(): Promise<PostagemEntity[]> {
+    const prismaPostagem = await this.prisma.postagens.findMany();
+
+    return prismaPostagem.map(this.mapToPostagem);
   }
 
   async buscarPostagemPorId(id: string): Promise<PostagemEntity | null> {
