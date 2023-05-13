@@ -13,7 +13,7 @@ export class PostagemController {
   async criandoPostagem(req: Request, res: Response): Promise<void> {
     try {
       const id = uuidv4();
-      const { usuarioId } = req.params;
+      const { id_usuario } = req.params;
       const { nome_pet, sexo_pet, idade_pet }: PostagemEntity = req.body;
 
       const postagem = new PostagemEntity(
@@ -21,7 +21,7 @@ export class PostagemController {
         nome_pet,
         sexo_pet,
         idade_pet,
-        usuarioId
+        id_usuario
       );
 
       const criandoPostagem = await this.postgemUseCase.criarPostagem(postagem);
