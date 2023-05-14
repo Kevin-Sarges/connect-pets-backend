@@ -1,3 +1,3 @@
 export class CidadeEntity {
-  constructor(public id: string, public nome_cidade: string) {}
+  constructor(public nome_cidade: string) {}
 }
