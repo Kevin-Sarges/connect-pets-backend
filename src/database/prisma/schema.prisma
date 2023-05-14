@@ -32,6 +32,7 @@ model Postagens {
   nome_pet    String
   sexo_pet    String
   idade_pet   String
+  imagem_pet  String
   usuario     Usuarios @relation(fields: [id_usuario], references: [id])
   id_usuario  String
   created_at  DateTime @default(now())
