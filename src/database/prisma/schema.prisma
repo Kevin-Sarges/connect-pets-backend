@@ -16,13 +16,13 @@ model Cidades {
 }
 
 model Usuarios {
-  id          String      @id @default(uuid())
-  nome_doador String
-  email       String
-  password    String
-  cidade      Cidades     @relation(fields: [cidadeId], references: [id])
-  cidadeId    String
-  Postagens   Postagens[]
+  id            String      @id @default(uuid())
+  nome_doador   String
+  email         String
+  numero_doador String
+  cidade        Cidades     @relation(fields: [cidadeId], references: [id])
+  cidadeId      String
+  Postagens     Postagens[]
 
   @@map("usuarios")
 }
@@ -34,6 +34,8 @@ model Postagens {
   idade_pet   String
   usuario     Usuarios @relation(fields: [id_usuario], references: [id])
   id_usuario  String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 
   @@map("postagens")
 }
