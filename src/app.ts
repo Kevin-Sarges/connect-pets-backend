@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { CidadeRoutes, UsuarioRoutes } from "./routes";
+import { CidadeRoutes, UsuarioRoutes, PostagemRoutes } from "./routes";
 import { createConnection } from "./database/client";
 
 const app = express();
@@ -11,6 +11,7 @@ app.use(express.json());
 createConnection().then(() => {
   app.use(CidadeRoutes);
   app.use(UsuarioRoutes);
+  app.use(PostagemRoutes);
 });
 
 export default app;
