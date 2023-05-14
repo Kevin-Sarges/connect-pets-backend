@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { CidadeEntity as Cidade } from "../entities/cidade.entity";
 import { CidadeRepository } from "../repositories/cidade.repository";
 
@@ -6,8 +5,7 @@ export class CidadeUseCase {
   constructor(private cidadeRepository: CidadeRepository) {}
 
   async criarCidade(nomeCidade: string): Promise<Cidade> {
-    const id = uuidv4();
-    const novaCidade = new Cidade(nomeCidade, id);
+    const novaCidade = new Cidade(nomeCidade);
 
     const cidadeCriada = await this.cidadeRepository.criar(novaCidade);
     return cidadeCriada;
@@ -35,7 +33,7 @@ export class CidadeUseCase {
       throw Error("Cidade não existe");
     }
 
-    const cidadeAtualizada = new Cidade(id, nomeCidade);
+    const cidadeAtualizada = new Cidade(nomeCidade);
     const cidadeAtualizadaResult = await this.cidadeRepository.atualizar(
       id,
       cidadeAtualizada
