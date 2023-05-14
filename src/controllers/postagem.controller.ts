@@ -12,15 +12,15 @@ export class PostagemController {
 
   async criandoPostagem(req: Request, res: Response): Promise<void> {
     try {
-      const id = uuidv4();
       const { id_usuario } = req.params;
-      const { nome_pet, sexo_pet, idade_pet }: PostagemEntity = req.body;
+      const { nome_pet, sexo_pet, idade_pet, imagem_pet }: PostagemEntity =
+        req.body;
 
       const postagem = new PostagemEntity(
-        id,
         nome_pet,
         sexo_pet,
         idade_pet,
+        imagem_pet,
         id_usuario
       );
 
@@ -81,13 +81,14 @@ export class PostagemController {
   async atualizandoPostagem(req: Request, res: Response): Promise<void> {
     try {
       const { id, id_usuario } = req.params;
-      const { nome_pet, sexo_pet, idade_pet }: PostagemEntity = req.body;
+      const { nome_pet, sexo_pet, idade_pet, imagem_pet }: PostagemEntity =
+        req.body;
 
       const postagem = new PostagemEntity(
-        id,
         nome_pet,
         sexo_pet,
         idade_pet,
+        imagem_pet,
         id_usuario
       );
 
