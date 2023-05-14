@@ -7,7 +7,6 @@ export class CidadeRepository {
   async criar(cidade: Cidade): Promise<Cidade> {
     const novaCidade = await prisma.cidades.create({
       data: {
-        id: cidade.id,
         nome_cidade: cidade.nome_cidade,
       },
     });
