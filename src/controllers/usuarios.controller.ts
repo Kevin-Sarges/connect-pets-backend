@@ -96,7 +96,7 @@ export class UsuarioController {
         return;
       }
 
-      res.status(204).json({ message: "Usuário deletado" }).end();
+      res.status(204).json({ message: "Usuário deletado" });
     } catch (error) {
       res.status(500).json({ error: "Erro ao deletar usuário" });
     }
