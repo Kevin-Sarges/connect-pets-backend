@@ -12,8 +12,15 @@ export class PostagemController {
   async criandoPostagem(req: Request, res: Response): Promise<void> {
     try {
       const { id_usuario } = req.params;
-      const { id, nome_pet, sexo_pet, idade_pet, imagem_pet }: PostagemEntity =
-        req.body;
+      const {
+        id,
+        nome_pet,
+        sexo_pet,
+        idade_pet,
+        imagem_pet,
+        created_at,
+        updated_at,
+      }: PostagemEntity = req.body;
 
       const postagem = new PostagemEntity(
         id,
@@ -21,7 +28,9 @@ export class PostagemController {
         sexo_pet,
         idade_pet,
         imagem_pet,
-        id_usuario
+        id_usuario,
+        created_at,
+        updated_at
       );
 
       const criandoPostagem = await this.postgemUseCase.criarPostagem(postagem);
@@ -81,8 +90,14 @@ export class PostagemController {
   async atualizandoPostagem(req: Request, res: Response): Promise<void> {
     try {
       const { id, id_usuario } = req.params;
-      const { nome_pet, sexo_pet, idade_pet, imagem_pet }: PostagemEntity =
-        req.body;
+      const {
+        nome_pet,
+        sexo_pet,
+        idade_pet,
+        imagem_pet,
+        created_at,
+        updated_at,
+      }: PostagemEntity = req.body;
 
       const postagem = new PostagemEntity(
         id,
@@ -90,7 +105,9 @@ export class PostagemController {
         sexo_pet,
         idade_pet,
         imagem_pet,
-        id_usuario
+        id_usuario,
+        created_at,
+        updated_at
       );
 
       const postatgemAtualizada = await this.postgemUseCase.atualizarPostagem(

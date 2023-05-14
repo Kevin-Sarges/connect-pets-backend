@@ -21,6 +21,8 @@ export class PostagemRepository {
       idade_pet,
       imagem_pet,
       id_usuario,
+      created_at,
+      updated_at,
     } = prismaPostagem;
 
     return new PostagemEntity(
@@ -29,7 +31,9 @@ export class PostagemRepository {
       sexo_pet,
       imagem_pet,
       idade_pet,
-      id_usuario
+      id_usuario,
+      created_at,
+      updated_at
     );
   }
 
