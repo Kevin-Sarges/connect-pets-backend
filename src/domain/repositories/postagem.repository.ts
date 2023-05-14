@@ -57,7 +57,11 @@ export class PostagemRepository {
   }
 
   async buscarPostagens(): Promise<PostagemEntity[]> {
-    const prismaPostagem = await this.prisma.postagens.findMany();
+    const prismaPostagem = await this.prisma.postagens.findMany({
+      orderBy: {
+        created_at: "desc",
+      },
+    });
 
     return prismaPostagem.map(this.mapToPostagem);
   }
@@ -79,6 +83,9 @@ export class PostagemRepository {
   ): Promise<PostagemEntity[]> {
     const prismaPostagem = await this.prisma.postagens.findMany({
       where: { id_usuario: usuarioId },
+      orderBy: {
+        created_at: "desc",
+      },
     });
 
     return prismaPostagem.map(this.mapToPostagem);
