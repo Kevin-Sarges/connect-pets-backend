@@ -14,28 +14,28 @@ export class PostagemRepository {
   }
 
   private mapToPostagem(prismaPostagem: PrismaPostagem) {
-    const { id_postagem, nome_pet, sexo_pet, idade_pet, id_usuario } =
+    const { nome_pet, sexo_pet, idade_pet, imagem_pet, id_usuario } =
       prismaPostagem;
 
     return new PostagemEntity(
-      id_postagem,
       nome_pet,
       sexo_pet,
+      imagem_pet,
       idade_pet,
       id_usuario
     );
   }
 
   async criandoPostagem(postagem: PostagemEntity): Promise<PostagemEntity> {
-    const { id, idade_pet, nome_pet, sexo_pet, usuarioId } = postagem;
+    const { idade_pet, nome_pet, sexo_pet, imagem_pet, usuarioId } = postagem;
 
     const prismaPostagem = await this.prisma.postagens.create({
       data: {
-        id_postagem: id,
         nome_pet,
         idade_pet,
         sexo_pet,
         id_usuario: usuarioId,
+        imagem_pet,
       },
     });
 
@@ -74,7 +74,7 @@ export class PostagemRepository {
     id: string,
     postagem: PostagemEntity
   ): Promise<PostagemEntity | null> {
-    const { nome_pet, sexo_pet, idade_pet } = postagem;
+    const { nome_pet, sexo_pet, idade_pet, imagem_pet } = postagem;
 
     const prismaPostagem = await this.prisma.postagens.update({
       where: { id_postagem: id },
@@ -82,6 +82,7 @@ export class PostagemRepository {
         nome_pet,
         sexo_pet,
         idade_pet,
+        imagem_pet,
       },
     });
 

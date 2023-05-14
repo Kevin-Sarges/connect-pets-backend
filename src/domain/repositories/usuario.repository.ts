@@ -9,19 +9,18 @@ export class UsuarioRepository {
   }
 
   private mapToUsuario(prismaUsuario: PrismaUsuario): UsuarioEntity {
-    const { id, nome_doador, email, password, cidadeId } = prismaUsuario;
-    return new UsuarioEntity(id, nome_doador, email, password, cidadeId);
+    const { nome_doador, email, numero_doador, cidadeId } = prismaUsuario;
+    return new UsuarioEntity(nome_doador, email, numero_doador, cidadeId);
   }
 
   async criarUsuario(usuario: UsuarioEntity): Promise<UsuarioEntity> {
-    const { id, nome_doador, email, password, cidadeId } = usuario;
+    const { nome_doador, email, numero_doador, cidadeId } = usuario;
 
     const prismaUsuario = await this.prisma.usuarios.create({
       data: {
-        id,
         nome_doador,
         email,
-        password,
+        numero_doador,
         cidadeId,
       },
     });
@@ -53,14 +52,14 @@ export class UsuarioRepository {
     id: string,
     usuario: UsuarioEntity
   ): Promise<UsuarioEntity | null> {
-    const { nome_doador, email, password, cidadeId } = usuario;
+    const { nome_doador, email, numero_doador, cidadeId } = usuario;
 
     const prismaUsuario = await this.prisma.usuarios.update({
       where: { id },
       data: {
         nome_doador,
         email,
-        password,
+        numero_doador,
         cidadeId,
       },
     });
