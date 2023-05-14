@@ -9,15 +9,16 @@ export class UsuarioRepository {
   }
 
   private mapToUsuario(prismaUsuario: PrismaUsuario): UsuarioEntity {
-    const { nome_doador, email, numero_doador, cidadeId } = prismaUsuario;
-    return new UsuarioEntity(nome_doador, email, numero_doador, cidadeId);
+    const { id, nome_doador, email, numero_doador, cidadeId } = prismaUsuario;
+    return new UsuarioEntity(id, nome_doador, email, numero_doador, cidadeId);
   }
 
   async criarUsuario(usuario: UsuarioEntity): Promise<UsuarioEntity> {
-    const { nome_doador, email, numero_doador, cidadeId } = usuario;
+    const { id, nome_doador, email, numero_doador, cidadeId } = usuario;
 
     const prismaUsuario = await this.prisma.usuarios.create({
       data: {
+        id,
         nome_doador,
         email,
         numero_doador,

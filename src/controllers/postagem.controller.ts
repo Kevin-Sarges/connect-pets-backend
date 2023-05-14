@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { Request, Response } from "express";
 import { PostagemUseCase } from "../domain/usecases/postagem.usecase";
 import { PostagemEntity } from "../domain/entities/postagem.entity";
@@ -13,10 +12,11 @@ export class PostagemController {
   async criandoPostagem(req: Request, res: Response): Promise<void> {
     try {
       const { id_usuario } = req.params;
-      const { nome_pet, sexo_pet, idade_pet, imagem_pet }: PostagemEntity =
+      const { id, nome_pet, sexo_pet, idade_pet, imagem_pet }: PostagemEntity =
         req.body;
 
       const postagem = new PostagemEntity(
+        id,
         nome_pet,
         sexo_pet,
         idade_pet,
@@ -85,6 +85,7 @@ export class PostagemController {
         req.body;
 
       const postagem = new PostagemEntity(
+        id,
         nome_pet,
         sexo_pet,
         idade_pet,
@@ -119,7 +120,7 @@ export class PostagemController {
         return;
       }
 
-      res.status(204).json({ message: "Postagem excluida" });
+      res.status(204).json({ message: "Postagem excluida" }).end();
     } catch (error) {
       res.status(500).json({ erro: "Erro ao deletar postagem" });
     }

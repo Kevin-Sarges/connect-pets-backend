@@ -12,9 +12,10 @@ export class UsuarioController {
   async criarUsuario(req: Request, res: Response): Promise<void> {
     try {
       const cidadeId = req.params.cidadeId;
-      const { nome_doador, email, numero_doador } = req.body;
+      const { id, nome_doador, email, numero_doador } = req.body;
 
       const novoUsuario = new UsuarioEntity(
+        id,
         nome_doador,
         email,
         numero_doador,
@@ -63,6 +64,7 @@ export class UsuarioController {
       const { nome_doador, email, numero_doador } = req.body;
 
       const usuarioAtualizado = new UsuarioEntity(
+        id,
         nome_doador,
         email,
         numero_doador,
