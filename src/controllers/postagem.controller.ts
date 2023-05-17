@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { Request, Response } from "express";
 import { PostagemUseCase } from "../domain/usecases/postagem.usecase";
 import { PostagemEntity } from "../domain/entities/postagem.entity";
@@ -12,16 +11,26 @@ export class PostagemController {
 
   async criandoPostagem(req: Request, res: Response): Promise<void> {
     try {
-      const id = uuidv4();
       const { id_usuario } = req.params;
-      const { nome_pet, sexo_pet, idade_pet }: PostagemEntity = req.body;
+      const {
+        id,
+        nome_pet,
+        sexo_pet,
+        idade_pet,
+        imagem_pet,
+        created_at,
+        updated_at,
+      }: PostagemEntity = req.body;
 
       const postagem = new PostagemEntity(
         id,
         nome_pet,
         sexo_pet,
         idade_pet,
-        id_usuario
+        imagem_pet,
+        id_usuario,
+        created_at,
+        updated_at
       );
 
       const criandoPostagem = await this.postgemUseCase.criarPostagem(postagem);
@@ -59,36 +68,27 @@ export class PostagemController {
     }
   }
 
-  async buscarPostagemPorUsuario(req: Request, res: Response): Promise<void> {
-    try {
-      const { id_usuario } = req.params;
-
-      const postagem = await this.postgemUseCase.buscarPostagensPorUsuario(
-        id_usuario
-      );
-
-      if (!postagem) {
-        res.status(404).json({ erro: "Postagem não encotrada" });
-        return;
-      }
-
-      res.status(200).json(postagem);
-    } catch (error) {
-      res.status(500).json({ erro: "Erro ao buscar postagem" });
-    }
-  }
-
   async atualizandoPostagem(req: Request, res: Response): Promise<void> {
     try {
       const { id, id_usuario } = req.params;
-      const { nome_pet, sexo_pet, idade_pet }: PostagemEntity = req.body;
+      const {
+        nome_pet,
+        sexo_pet,
+        idade_pet,
+        imagem_pet,
+        created_at,
+        updated_at,
+      }: PostagemEntity = req.body;
 
       const postagem = new PostagemEntity(
         id,
         nome_pet,
         sexo_pet,
         idade_pet,
-        id_usuario
+        imagem_pet,
+        id_usuario,
+        created_at,
+        updated_at
       );
 
       const postatgemAtualizada = await this.postgemUseCase.atualizarPostagem(
@@ -118,7 +118,7 @@ export class PostagemController {
         return;
       }
 
-      res.status(204).json({ message: "Postagem excluida" }).end();
+      res.status(204).json({ message: "Postagem excluida" });
     } catch (error) {
       res.status(500).json({ erro: "Erro ao deletar postagem" });
     }

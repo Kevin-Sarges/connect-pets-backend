@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { UsuarioEntity } from "../domain/entities/usuario.entity";
 import { UsuariosUseCase } from "../domain/usecases/usuarios.usecase";
-import { v4 as uuidv4 } from "uuid";
 
 export class UsuarioController {
   private usuarioUseCase: UsuariosUseCase;
@@ -12,15 +11,14 @@ export class UsuarioController {
 
   async criarUsuario(req: Request, res: Response): Promise<void> {
     try {
-      const id: string = uuidv4();
       const cidadeId = req.params.cidadeId;
-      const { nome_doador, email, password } = req.body;
+      const { id, nome_doador, email, numero_doador } = req.body;
 
       const novoUsuario = new UsuarioEntity(
         id,
         nome_doador,
         email,
-        password,
+        numero_doador,
         cidadeId
       );
 
@@ -63,13 +61,13 @@ export class UsuarioController {
   async atualizarUsuario(req: Request, res: Response): Promise<void> {
     try {
       const { id, cidadeId } = req.params;
-      const { nome_doador, email, password } = req.body;
+      const { nome_doador, email, numero_doador } = req.body;
 
       const usuarioAtualizado = new UsuarioEntity(
         id,
         nome_doador,
         email,
-        password,
+        numero_doador,
         cidadeId
       );
 
@@ -100,7 +98,7 @@ export class UsuarioController {
         return;
       }
 
-      res.status(204).json({ message: "Usuário deletado" }).end();
+      res.status(204).json({ message: "Usuário deletado" });
     } catch (error) {
       res.status(500).json({ error: "Erro ao deletar usuário" });
     }

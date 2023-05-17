@@ -72,7 +72,7 @@ export class CidadeController {
       res.json({ message: "Cidade deletada com sucesso" });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ erro: "Erro ao atualizar a cidade" });
+      res.status(500).json({ erro: "Erro ao deletar a cidade" });
     }
   }
 }
