@@ -1,4 +1,5 @@
 import { PostagemEntity } from "../entities/postagem.entity";
+import { Postagens, Postagens as PrismaPostagem } from "@prisma/client";
 import { PostagemRepository } from "../repositories/postagem.repository";
 
 export class PostagemUseCase {
@@ -12,18 +13,12 @@ export class PostagemUseCase {
     return this.postagemRepository.criandoPostagem(postagem);
   }
 
-  async buscarPostagens(): Promise<PostagemEntity[]> {
+  async buscarPostagens(): Promise<Postagens[]> {
     return this.postagemRepository.buscarPostagens();
   }
 
-  async buscarPostagemPoId(id: string): Promise<PostagemEntity | null> {
+  async buscarPostagemPoId(id: string): Promise<PrismaPostagem | null> {
     return this.postagemRepository.buscarPostagemPorId(id);
-  }
-
-  async buscarPostagensPorUsuario(
-    usuarioId: string
-  ): Promise<PostagemEntity[]> {
-    return this.postagemRepository.buscandoPostagemPorUsuario(usuarioId);
   }
 
   async atualizarPostagem(

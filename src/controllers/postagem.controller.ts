@@ -68,25 +68,6 @@ export class PostagemController {
     }
   }
 
-  async buscarPostagemPorUsuario(req: Request, res: Response): Promise<void> {
-    try {
-      const { id_usuario } = req.params;
-
-      const postagem = await this.postgemUseCase.buscarPostagensPorUsuario(
-        id_usuario
-      );
-
-      if (!postagem) {
-        res.status(404).json({ erro: "Postagem não encotrada" });
-        return;
-      }
-
-      res.status(200).json(postagem);
-    } catch (error) {
-      res.status(500).json({ erro: "Erro ao buscar postagem" });
-    }
-  }
-
   async atualizandoPostagem(req: Request, res: Response): Promise<void> {
     try {
       const { id, id_usuario } = req.params;

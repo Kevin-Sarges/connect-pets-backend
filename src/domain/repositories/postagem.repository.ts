@@ -51,7 +51,7 @@ export class PostagemRepository {
     return this.mapToPostagem(prismaPostagem);
   }
 
-  async buscarPostagens(): Promise<PostagemEntity[]> {
+  async buscarPostagens(): Promise<PrismaPostagem[]> {
     const prismaPostagem = await this.prisma.postagens.findMany({
       orderBy: {
         created_at: "desc",
@@ -61,10 +61,10 @@ export class PostagemRepository {
       },
     });
 
-    return prismaPostagem.map(this.mapToPostagem);
+    return prismaPostagem;
   }
 
-  async buscarPostagemPorId(id: string): Promise<PostagemEntity | null> {
+  async buscarPostagemPorId(id: string): Promise<PrismaPostagem | null> {
     const prismaPostagem = await this.prisma.postagens.findUnique({
       where: { id_postagem: id },
       include: {
@@ -76,7 +76,7 @@ export class PostagemRepository {
       return null;
     }
 
-    return this.mapToPostagem(prismaPostagem);
+    return prismaPostagem;
   }
 
   async atualizarPostagem(

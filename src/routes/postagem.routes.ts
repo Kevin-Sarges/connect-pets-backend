@@ -21,10 +21,6 @@ postagemRoutes.get(
   "/postagens/postagem/:id",
   postagemController.buscarPostagemPorId.bind(postagemController)
 );
-postagemRoutes.get(
-  "/usuarios/usuario/:id_usuario/postagens",
-  postagemController.buscarPostagemPorUsuario.bind(postagemController)
-);
 postagemRoutes.put(
   "/usuarios/usuario/:id_usuario/posatgens/postagem/:id",
   postagemController.atualizandoPostagem.bind(postagemController)
