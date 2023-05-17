@@ -1,10 +1,5 @@
-import {
-  Postagens,
-  PrismaClient,
-  Postagens as PrismaPostagem,
-} from "@prisma/client";
+import { PrismaClient, Postagens as PrismaPostagem } from "@prisma/client";
 import { PostagemEntity } from "../entities/postagem.entity";
-import { parseIsolatedEntityName } from "typescript";
 
 export class PostagemRepository {
   private prisma: PrismaClient;
@@ -23,7 +18,7 @@ export class PostagemRepository {
       id_usuario,
       created_at,
       updated_at,
-    } = prismaPostagem;
+    }: PrismaPostagem = prismaPostagem;
 
     return new PostagemEntity(
       id_postagem,
@@ -61,6 +56,9 @@ export class PostagemRepository {
       orderBy: {
         created_at: "desc",
       },
+      include: {
+        usuario: true,
+      },
     });
 
     return prismaPostagem.map(this.mapToPostagem);
@@ -69,6 +67,9 @@ export class PostagemRepository {
   async buscarPostagemPorId(id: string): Promise<PostagemEntity | null> {
     const prismaPostagem = await this.prisma.postagens.findUnique({
       where: { id_postagem: id },
+      include: {
+        usuario: true,
+      },
     });
 
     if (!prismaPostagem) {
@@ -76,19 +77,6 @@ export class PostagemRepository {
     }
 
     return this.mapToPostagem(prismaPostagem);
-  }
-
-  async buscandoPostagemPorUsuario(
-    usuarioId: string
-  ): Promise<PostagemEntity[]> {
-    const prismaPostagem = await this.prisma.postagens.findMany({
-      where: { id_usuario: usuarioId },
-      orderBy: {
-        created_at: "desc",
-      },
-    });
-
-    return prismaPostagem.map(this.mapToPostagem);
   }
 
   async atualizarPostagem(

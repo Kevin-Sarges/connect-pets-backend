@@ -34,13 +34,17 @@ export class UsuarioRepository {
       where: {
         id,
       },
+      include: {
+        cidade: true,
+        Postagens: true,
+      },
     });
 
     if (!prismaUsuario) {
       return null;
     }
 
-    return this.mapToUsuario(prismaUsuario);
+    return prismaUsuario;
   }
 
   async buscarUsuarios(): Promise<UsuarioEntity[]> {
