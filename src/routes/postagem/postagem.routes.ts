@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { PostagemRepository } from "../domain/repositories/postagem.repository";
-import { PostagemUseCase } from "../domain/usecases/postagem.usecase";
-import { PostagemController } from "../controllers/postagem.controller";
+import { PostagemRepository } from "../../domain/repositories/postagem.repository";
+import { PostagemUseCase } from "../../domain/usecases/postagem.usecase";
+import { PostagemController } from "../../controllers/postagem.controller";
 
 const postagemRoutes = Router();
 
